@@ -8,12 +8,15 @@ export default function Nav({user}: Session){
     return(
         <nav
         className='
-        flex
-        justify-between
-        items-center
         py-8
+        bg-primary
+
         '>
-            <h1>Hi mate</h1>
+            <div className='
+            mx-32 flex
+            justify-between
+            items-center'>
+            <h1 className='text-bgBlack font-bold text-2xl'>Octopus Shop</h1>
             <ul
             className='
             items-center
@@ -23,7 +26,7 @@ export default function Nav({user}: Session){
                 {!user &&(
                     <li
                     className='
-                    bg-teal-600 text-white py-2 px-4 rounded-md
+                    bg-accent font-semibold text-white py-2 px-4 rounded-md
                     '
                     >
                         <button onClick={()=>signIn()}>signin</button>
@@ -43,6 +46,7 @@ export default function Nav({user}: Session){
                     </li>
                 )}
             </ul>
+            </div>
         </nav>
     )
 }
