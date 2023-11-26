@@ -14,7 +14,7 @@ const getProducts = async () =>{
         id: product.id,
         name: product.name,
         price: prices.data[0].unit_amount,
-        image: product.images[0],
+        img: product.images[0],
         currency: prices.data[0].currency,
       }
     })
@@ -24,7 +24,6 @@ const getProducts = async () =>{
 
 export default async function Home() {
   const products = await getProducts();
-  console.log(products)
   return (
     <main>
      {products.map(product => 
