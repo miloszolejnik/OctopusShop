@@ -19,9 +19,11 @@ export default async function RootLayout({
   return (
     <html lang="pl" className='bg-bgBlack text-ghostWhite h-screen'>
       <body>
-      <Nav user={session?.user} expires={session?.expires as string} />
-        {children}
-        </body>
+        <Nav user={session?.user} expires={session?.expires as string} />
+        <main className='mx-32'>
+          {children}
+        </main>
+      </body>
     </html>
   )
 }
