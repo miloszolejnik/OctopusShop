@@ -8,6 +8,7 @@ type SearchParams = {
     price: number | null,
     currency: string,
     features: string,
+    id: string,
 }
 export type SearchParamsTypes = {
     params: Params,

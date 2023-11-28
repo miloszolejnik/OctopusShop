@@ -7,7 +7,7 @@ export default function Cart(){
     const cartStore = useCartStore()
     return(
         <div>
-            {cartStore.isOpen}
+            <h1>Cart</h1>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import './globals.css'
 import Nav from './components/Nav'
 import {getServerSession} from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import Hydrate from './components/Hydrate'
 
 export const metadata = {
   title: 'Create Next App',
@@ -19,10 +20,12 @@ export default async function RootLayout({
   return (
     <html lang="pl" className='bg-bgBlack text-ghostWhite h-screen'>
       <body>
-        <Nav user={session?.user} expires={session?.expires as string} />
-        <main className='mx-32'>
-          {children}
-        </main>
+        <Hydrate>
+          <Nav user={session?.user} expires={session?.expires as string} />
+          <main className='mx-32'>
+            {children}
+          </main>
+        </Hydrate>
       </body>
     </html>
   )

@@ -4,7 +4,7 @@ export type ProductType = {
     price: number | null,
     id: string,
     currency: string,
-    quantity?: number |1,
+    quantity?: number | 1,
     metadata: MetadataType
 }
 type MetadataType = {

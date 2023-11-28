@@ -2,7 +2,7 @@
 import { SearchParamsTypes } from '@/app/types/searchParams'
 import Image from 'next/image'
 import formatPrice from '@/app/util/priceFormat'
-
+import AddToCart from '../addToCart'
 export default async function Product({searchParams}:SearchParamsTypes){
     return(
         <div className='flex flex-row gap-6 text-gray-700'>
@@ -24,17 +24,7 @@ export default async function Product({searchParams}:SearchParamsTypes){
                 <p className='text-accent pb-8'>
                     {searchParams.price !== null ? formatPrice(searchParams.price) : 'N/A'}
                 </p>
-                <button 
-                className='
-                hover:bg-accent 
-                transition-colors 
-                duration-200 px-3 
-                py-1 
-                border-2 
-                rounded-md 
-                hover:border-accent'>
-                    Dodaj do koszyka
-                </button>
+                <AddToCart {...searchParams} />
             </div>
         </div>
     )

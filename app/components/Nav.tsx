@@ -32,7 +32,9 @@ export default function Nav({user}: Session){
                 items-center
                 gap-12
                 '>
-                    <li className='
+                    {/* Toggle the cart */}
+                    <li onClick={() =>{ cartStore.toggleCart()}}
+                    className='
                     flex
                     items-center
                     text-3xl
@@ -79,8 +81,10 @@ export default function Nav({user}: Session){
                             />
                         </li>
                     )}
+                    <li>
+                    {cartStore.isOpen && <Cart />}
+                    </li>
                 </ul>
-                {cartStore.isOpen && <Cart />}
             </div>
         </nav>
     )

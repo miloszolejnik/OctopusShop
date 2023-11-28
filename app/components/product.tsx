@@ -19,7 +19,6 @@ export default function Product({name, img, price, id, metadata}:ProductType){
                 <h1 className='text-center truncate font-bold pb-2'>{name}</h1>
                 <div className='flex flex-row justify-between'>
                     <p className='text-accent'>{price !== null ? formatPrice(price) : 'N/A'}</p>
-                    <button className='hover:bg-accent transition-colors duration-200 px-3 py-1 border-2 rounded-md hover:border-accent'>Dodaj do koszyka</button>
                 </div>
             </div>
         </div>
