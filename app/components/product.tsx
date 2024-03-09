@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default function Product({name, img, price, id, metadata}:ProductType){
     const {features} = metadata
     return(
-        <div className='bg-bgCard flex flex-col pb-6 rounded-md drop-shadow-lg hover:drop-shadow-2xl duration-200 hover:translate-y-1 transition-all'>
+        <div className='bg-bgCard flex flex-col pb-6 rounded-md drop-shadow-lg hover:drop-shadow-2xl duration-200 hover:translate-y-1 transition-all z-0'>
             <Link href={{pathname: `/products/${id}`, query: {name, img, price, id, features}}}>
                 <Image 
                     src={img} 

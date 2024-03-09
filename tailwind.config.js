@@ -12,7 +12,7 @@ module.exports = {
         'bgCard' : '#f8f8ff',
         "ghostWhite" : '#141414',
         'primary': '#C61AA7',
-        'accent': '#1AC639',
+        'accent': 'rgb(15 118 110) ',
       },
       gridTemplateColumns:{
         fluid: 'repeat(auto-fit, minmax(15rem,1fr))',
