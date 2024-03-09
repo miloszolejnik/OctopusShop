@@ -26,10 +26,10 @@ export default async function RootLayout({
   console.log(session)
   return (
     <html lang="pl" className='bg-bgBlack text-ghostWhite h-screen'>
-      <body className={`${roboto.className}`}>
+      <body className={`${roboto.className} h-screen z-100`} suppressHydrationWarning={true}>
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires as string} />
-          <main className='mx-32'>
+          <main className='overflow-y-hidden mt-24 h-auto'>
             {children}
           </main>
         </Hydrate>

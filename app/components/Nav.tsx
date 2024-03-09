@@ -16,12 +16,14 @@ export default function Nav({user}: Session){
         className='
         py-1
         bg-primary
-        mb-12
         shadow-xl
+        absolute
+        w-screen
+        z-10
         '>  
             {/* Shop name / Logo */}
             <div className='
-            mx-32 
+            mx-4 
             flex
             justify-between
             items-center'>
@@ -33,7 +35,6 @@ export default function Nav({user}: Session){
                 flex
                 flex-row
                 items-center
-                gap-12
                 '>
                     {/* Toggle the cart */}
                     <li onClick={() =>{ cartStore.toggleCart()}}
@@ -43,6 +44,7 @@ export default function Nav({user}: Session){
                     text-3xl
                     relative
                     cursor-pointer
+                    mx-4
                     '>
                         <AiFillShopping />
                         <AnimatePresence>
@@ -87,9 +89,7 @@ export default function Nav({user}: Session){
                             alt={user.name as string} 
                             width={36} 
                             height={36}
-                            className='
-                            rounded-full
-                            '
+                            className='rounded-full'
                             />
                         </li>
                     )}

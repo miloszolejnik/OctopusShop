@@ -5,7 +5,14 @@ import formatPrice from '@/app/util/priceFormat'
 import AddToCart from '../addToCart'
 export default async function Product({searchParams}:SearchParamsTypes){
     return(
-        <div className='flex flex-row gap-6 text-gray-700'>
+        <div className='
+        flex 
+        items-center
+        text-center
+        gap-6 
+        flex-col
+        lg:flex-row 
+        text-gray-700'>
             <Image 
                 src={searchParams.img} 
                 alt={searchParams.name} 

@@ -11,14 +11,19 @@ export default function AddToCart({name, id, img, price, quantity}:AddToCartType
             <button 
             onClick={() => CartStore.addProduct({name, id, img, price}) }
             className="
-            hover:bg-accent 
+            bg-black
+            bg: border-black
+            text-white
             transition-colors 
             duration-200 
             px-3 
             py-1 
             border-2 
             rounded-md 
-            hover:border-accent">
+            uppercase
+            hover:bg-accent 
+            hover:border-accent
+            ">
                 Add To Cart
             </button>
         </>

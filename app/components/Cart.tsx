@@ -22,7 +22,7 @@ export default function Cart(){
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             onClick={() =>{ cartStore.toggleCart()}} 
-            className='fixed w-full h-screen left-0 top-0 bg-black/25 z-10'>
+            className='fixed w-full h-screen left-0 top-0 bg-black/25'>
             {/* Cart itself  */}
             <motion.div
             layout
@@ -31,11 +31,13 @@ export default function Cart(){
             bg-bgCard 
             absolute right-0 
             top-0 
-            w-1/4 
+            w-screen 
             h-screen 
+            lg:w-2/5
             p-12 
             overflow-y-scroll 
-            text-gray-700'>
+            text-gray-700
+            '>
                 {/* Check if there are any items in the cart to render */}
                 {cartStore.cart.length > 0 && (
                     <>
@@ -75,10 +77,13 @@ export default function Cart(){
                         initial={{scale:0.5, rotateZ:-10, opacity:0 }}
                         exit={{scale:0.5, rotateZ:-10, opacity:0 }}
                         className='flex flex-col items-center gap-12 text-2xl font-medium'>
-                            <h1>Oh, its empty innit? 😒</h1>
+                            <h1>Oh, its bit empty innit? 😒</h1>
                             <Image src={basket} alt="basket is empty" width={200} height={200} className='opacity-75'/>
                         </motion.div>
                     )}
+                    <motion.div className='flex justify-center text-2xl mt-12 cursor-pointer'>
+                    <h1 onClick={() => cartStore.toggleCart()}>Back to store 🏃‍♀️</h1>
+                    </motion.div>
                 </AnimatePresence>
             </motion.div>
         </motion.div>
