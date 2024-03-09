@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'bgBlack' : '#f8f8ff',
+        'bgBlack' : '#f3f3f3',
         'bgCard' : '#f8f8ff',
         "ghostWhite" : '#141414',
         'primary': '#C61AA7',

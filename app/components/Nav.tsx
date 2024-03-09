@@ -7,16 +7,19 @@ import Link from 'next/link'
 import Cart from './Cart'
 import { useCartStore } from '@/store'
 import { AiFillShopping } from "react-icons/ai";
+import {AnimatePresence, motion} from 'framer-motion'
 
 export default function Nav({user}: Session){
     const cartStore = useCartStore()
     return(
         <nav
         className='
-        py-5
+        py-1
         bg-primary
         mb-12
-        '>
+        shadow-xl
+        '>  
+            {/* Shop name / Logo */}
             <div className='
             mx-32 
             flex
@@ -42,22 +45,31 @@ export default function Nav({user}: Session){
                     cursor-pointer
                     '>
                         <AiFillShopping />
-                        <span className='
-                        bg-teal-700 
-                        text-white 
-                        text-sm 
-                        font-bold 
-                        w-5 h-5 
-                        rounded-full 
-                        absolute 
-                        left-4 
-                        bottom-4 
-                        flex 
-                        items-center 
-                        justify-center'>
-                            {cartStore.cart.length}
-                        </span>
+                        <AnimatePresence>
+                            {cartStore.cart.length > 0 && (
+                                    <motion.span 
+                                    animate={{scale: 1}} 
+                                    initial={{scale: 0}}
+                                    exit={{scale: 0}}
+                                    className='
+                                    bg-teal-700 
+                                    text-white 
+                                    text-sm 
+                                    font-bold 
+                                    w-5 h-5 
+                                    rounded-full 
+                                    absolute 
+                                    left-4 
+                                    bottom-4 
+                                    flex 
+                                    items-center 
+                                    justify-center'>
+                                        {cartStore.cart.length}
+                                    </motion.span>
+                            )}
+                        </AnimatePresence>
                     </li>
+                    {/* User information */}
                     {/* Check if user is loggedin */}
                     {!user &&(
                         <li
@@ -73,8 +85,8 @@ export default function Nav({user}: Session){
                             <Image 
                             src={user?.image as string} 
                             alt={user.name as string} 
-                            width={48} 
-                            height={48}
+                            width={36} 
+                            height={36}
                             className='
                             rounded-full
                             '
@@ -82,7 +94,9 @@ export default function Nav({user}: Session){
                         </li>
                     )}
                     <li>
-                    {cartStore.isOpen && <Cart />}
+                        <AnimatePresence>
+                            {cartStore.isOpen && <Cart />}
+                        </AnimatePresence>
                     </li>
                 </ul>
             </div>

@@ -1,12 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { useCartStore } from '@/store'
 import formatPrice from '../util/priceFormat';
+import basket from '../png/basket.png'
+import { useCartStore } from '@/store'
 import {IoAddCircle, IoRemoveCircle} from 'react-icons/io5'
 import { ProductType } from '../types/ProductType';
 import { AddToCartType } from '../types/AddToCartType';
-import basket from '../png/basket.png'
+import {AnimatePresence, motion} from 'framer-motion'
 
 export default function Cart(){
     const cartStore = useCartStore();
@@ -16,20 +17,32 @@ export default function Cart(){
     }, 0)
 
     return(
-        <div 
-        onClick={() =>{ cartStore.toggleCart()}} 
-        className='fixed w-full h-screen left-0 top-0 bg-black/25 z-10'>
-            <div
+        <motion.div 
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
+            onClick={() =>{ cartStore.toggleCart()}} 
+            className='fixed w-full h-screen left-0 top-0 bg-black/25 z-10'>
+            {/* Cart itself  */}
+            <motion.div
+            layout
             onClick={(e) => e.stopPropagation()} 
             className='
-            bg-bgCard absolute right-0 top-0 w-1/4 h-screen p-12 overflow-y-scroll text-gray-700'>
+            bg-bgCard 
+            absolute right-0 
+            top-0 
+            w-1/4 
+            h-screen 
+            p-12 
+            overflow-y-scroll 
+            text-gray-700'>
                 {/* Check if there are any items in the cart to render */}
                 {cartStore.cart.length > 0 && (
                     <>
                 <h1>here's your shopping list buddy 😎</h1>
                 {/*List of items in the cart*/}
                 {cartStore.cart && cartStore.cart.map((item) => (
-                    <div className='flex py-4 gap-4' key={item.id}>
+                    <motion.div layout className='flex py-4 gap-4' key={item.id}>
                         <Image src={item.img as string} alt={item.name} width={120} height={120} className='rounded-md h-24' />
                         <div>
                             <h2>{item.name}</h2>
@@ -42,24 +55,32 @@ export default function Cart(){
                             </div>
                             <p className='text-sm'>{formatPrice(item.price as number)}</p>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
                 {/* Checkout and Total Price */}
+                <motion.div layout>
                     <h1>Total: {formatPrice(totalPrice)}</h1>
                     <button 
                     className='py-2 mt-4 bg-accent  rounded-md text-white w-full'>
                         Checkout
                     </button>
+                </motion.div>
                     </>
                 )}
-                {/* Empty cart message */}
-                {cartStore.cart.length <= 0 &&(
-                    <div className='flex flex-col items-center gap-12 text-2xl font-medium'>
-                        <h1>Oh, its empty innit? 😒</h1>
-                        <Image src={basket} alt="basket is empty" width={200} height={200} className='opacity-75'/>
-                    </div>
-                )}
-            </div>
-        </div>
+                <AnimatePresence>
+                    {/* Empty cart message */}
+                    {cartStore.cart.length <= 0 &&(
+                        <motion.div 
+                        animate={{scale:1, rotateZ:0, opacity:0.75}}
+                        initial={{scale:0.5, rotateZ:-10, opacity:0 }}
+                        exit={{scale:0.5, rotateZ:-10, opacity:0 }}
+                        className='flex flex-col items-center gap-12 text-2xl font-medium'>
+                            <h1>Oh, its empty innit? 😒</h1>
+                            <Image src={basket} alt="basket is empty" width={200} height={200} className='opacity-75'/>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.div>
+        </motion.div>
     )
 }
