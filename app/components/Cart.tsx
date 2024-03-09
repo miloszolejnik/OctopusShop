@@ -22,7 +22,7 @@ export default function Cart(){
                     <>
                 <h1>here's your shopping list buddy 😎</h1>
                 {cartStore.cart && cartStore.cart.map((item) => (
-                    <div className='flex py-4 gap-4'>
+                    <div className='flex py-4 gap-4' key={item.id}>
                         <Image src={item.img as string} alt={item.name} width={120} height={120} className='rounded-md h-24' />
                         <div>
                             <h2>{item.name}</h2>
