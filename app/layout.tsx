@@ -23,7 +23,6 @@ export default async function RootLayout({
 }) {
   //Fetch the user
   const session =await getServerSession(authOptions)
-  console.log(session)
   return (
     <html lang="pl" className='bg-bgBlack text-ghostWhite h-screen'>
       <body className={`${roboto.className} h-screen z-100`} suppressHydrationWarning={true}>
