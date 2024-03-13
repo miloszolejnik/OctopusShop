@@ -18,11 +18,13 @@ export default function Cart(){
     }, 0)
 
     return(
+        <AnimatePresence>
         <motion.div 
             initial={{opacity: 0}}
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             onClick={() =>{ cartStore.toggleCart()}} 
+            layout
             className='fixed w-full h-screen left-0 top-0 bg-black/25'>
             {/* Cart itself  */}
             <motion.div
@@ -41,14 +43,14 @@ export default function Cart(){
             '>
                 {/* Checking the state of the checkout */}
                 {cartStore.onCheckout === 'cart' && (
-                <>
+                    <>
                     {/* Check if there are any items in the cart to render */}
                     {cartStore.cart.length > 0 && (
-                        <>
+                        <motion.div layout>
                             <h1>here's your shopping list buddy 😎</h1>
                             {/*Cart items*/}
                             {cartStore.cart && cartStore.cart.map((item) => (
-                                <motion.div layout className='flex py-4 gap-4' key={item.id}>
+                                <motion.div className='flex py-4 gap-4' key={`${Math.floor(Math.random() * 101)}`}>
                                     <Image src={item.img as string} alt={item.name} width={120} height={120} className='rounded-md h-24' />
                                     <div>
                                         <h2>{item.name}</h2>
@@ -63,8 +65,13 @@ export default function Cart(){
                                     </div>
                                 </motion.div>
                             ))}
-                            {/* Checkout and Total Price */}
-                            <motion.div layout>
+                        </motion.div>
+                        )}
+                    </>
+                    )}
+                    {cartStore.onCheckout === 'checkout' && <CheckOut />}
+                    {/* Checkout and Total Price */}
+                    <motion.div layout>
                                 <h1>Total: {formatPrice(totalPrice)}</h1>
                                 {/* Checkout button */}
                                 <button 
@@ -73,9 +80,6 @@ export default function Cart(){
                                     Checkout
                                 </button>
                             </motion.div>
-                                </>
-                            )}
-                            <AnimatePresence>
                                 {/* Empty cart message */}
                                 {cartStore.cart.length <= 0 &&(
                                     <motion.div 
@@ -90,10 +94,8 @@ export default function Cart(){
                                 <motion.div className='flex justify-center text-2xl mt-12 cursor-pointer'>
                                 <h1 onClick={() => cartStore.toggleCart()}>Back to store 🏃‍♀️</h1>
                                 </motion.div>
-                            </AnimatePresence>
-                    </>)}
-                    {cartStore.onCheckout === 'checkout' && <CheckOut />}
-                </motion.div>
-        </motion.div>
+                    </motion.div>
+            </motion.div>
+        </AnimatePresence>
     )
 }

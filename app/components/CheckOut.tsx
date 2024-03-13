@@ -39,6 +39,7 @@ export default function Checkout() {
 
   return (
     <button>
+      {`${console.log('i have been summoned')}` && ''}
       hello
     </button>
   )
