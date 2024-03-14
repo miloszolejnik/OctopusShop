@@ -4,12 +4,13 @@ import { authOptions } from "./auth/[...nextauth]"
 import { getServerSession } from "next-auth"
 import { prisma } from "@/app/util/prisma"
 
-const stripe = new Stripe( 'sk_test_51MyZW2GW0xDNkRsqxUMfK1kf5L2yPI5ofO0fobctvY2TCPmoOszrQ1saJqcrY7rcLMNt1AMe47oCvdbVYRXcpcV100upziRbk1' as string, {
+const secretKey = process.env.STRIPE_SECRET_KEY
+const stripe = new Stripe(secretKey as string, {
   apiVersion: "2022-11-15",
 })
 
-const calculateOrderAmount = (items) => {
-    const totalPrice = items.reduce((acc, item) => {
+const calculateOrderAmount = (items: any) => {
+    const totalPrice = items.reduce((acc: any, item: any) => {
       return acc + item.price! * item.quantity!
     }, 0)
     return totalPrice}
@@ -31,13 +32,12 @@ export default async function handler(
   const orderData = {
     user: { connect: { id: userSession.user?.id } },
     amount: total,
-    currency: "usd",
+    currency: "PLN",
     status: "pending",
     paymentIntentID: payment_intent_id,
     products: {
-      create: items.map((item) => ({
+      create: items.map((item: any) => ({
         name: item.name,
-        description: item.description || null,
         price: parseFloat(item.price),
         image: item.image,
         quantity: item.quantity,
@@ -69,7 +69,6 @@ export default async function handler(
               deleteMany: {},
               create: items.map((item) => ({
                 name: item.name,
-                description: item.description || null,
                 price: parseFloat(item.price),
                 image: item.image,
                 quantity: item.quantity,
@@ -89,7 +88,7 @@ export default async function handler(
     //Create a new order with prisma
     const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateOrderAmount(items),
-      currency: "usd",
+      currency: "PLN",
       automatic_payment_methods: { enabled: true },
     })
 

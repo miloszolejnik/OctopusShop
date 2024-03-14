@@ -13,7 +13,8 @@ const nextConfig = {
                 pathname: '**',
             },
         ]
-    }
+    },
+    reactStrictMode: false,
 }
 
 module.exports = nextConfig

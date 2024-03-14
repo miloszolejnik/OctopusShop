@@ -5,8 +5,6 @@ import formatPrice from '../util/priceFormat';
 import basket from '../png/basket.png'
 import { useCartStore } from '@/store'
 import {IoAddCircle, IoRemoveCircle} from 'react-icons/io5'
-import { ProductType } from '../types/ProductType';
-import { AddToCartType } from '../types/AddToCartType';
 import {AnimatePresence, motion} from 'framer-motion'
 import CheckOut from './CheckOut';
 
@@ -69,9 +67,9 @@ export default function Cart(){
                         )}
                     </>
                     )}
-                    {cartStore.onCheckout === 'checkout' && <CheckOut />}
                     {/* Checkout and Total Price */}
-                    <motion.div layout>
+                    {cartStore.onCheckout === 'cart' &&(
+                        <motion.div layout>
                                 <h1>Total: {formatPrice(totalPrice)}</h1>
                                 {/* Checkout button */}
                                 <button 
@@ -80,6 +78,7 @@ export default function Cart(){
                                     Checkout
                                 </button>
                             </motion.div>
+                            )}
                                 {/* Empty cart message */}
                                 {cartStore.cart.length <= 0 &&(
                                     <motion.div 
@@ -91,10 +90,21 @@ export default function Cart(){
                                         <Image src={basket} alt="basket is empty" width={200} height={200} className='opacity-75'/>
                                     </motion.div>
                                 )}
+                                {cartStore.onCheckout === 'cart' &&(
                                 <motion.div className='flex justify-center text-2xl mt-12 cursor-pointer'>
-                                <h1 onClick={() => cartStore.toggleCart()}>Back to store 🏃‍♀️</h1>
+                                    <h1 onClick={() => cartStore.toggleCart()}>Back to store 🏃‍♀️</h1>
                                 </motion.div>
+                                )}
+                                {cartStore.onCheckout === 'checkout' && 
+                                <>
+                                    <CheckOut />
+                                    <motion.div className='flex justify-center text-2xl mt-12 cursor-pointer'>
+                                        <h1 onClick={() => cartStore.setOnCheckout("cart")}>Back to cart 🧺</h1>
+                                    </motion.div>
+                                </>
+                                }
                     </motion.div>
+                    
             </motion.div>
         </AnimatePresence>
     )

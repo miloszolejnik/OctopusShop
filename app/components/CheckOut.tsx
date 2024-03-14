@@ -4,10 +4,11 @@ import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js"
 import { useCartStore } from "@/store"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { Elements } from "@stripe/react-stripe-js"
+import CheckoutForm from "./CheckoutForm"
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-)
+const publicKey = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY
+const stripePromise = loadStripe(publicKey as string)
 
 export default function Checkout() {
   const cartStore = useCartStore()
@@ -15,7 +16,6 @@ export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("")
 
   useEffect(() => {
-    //Set the theme of stripe
     //Create a paymentIntent as soon as the page loads up
     fetch("/api/create-paymant-intent", {
       method: "POST",
@@ -37,10 +37,21 @@ export default function Checkout() {
       })
   }, [])
 
+  const options: StripeElementsOptions ={
+    clientSecret,
+    appearance: {
+      theme: 'stripe',
+      labels: 'floating',
+    }
+  }
+
   return (
-    <button>
-      {`${console.log('i have been summoned')}` && ''}
-      hello
-    </button>
+    <>
+      {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm clientSecret={clientSecret} />
+          </Elements>
+      )}
+    </>
   )
 }
