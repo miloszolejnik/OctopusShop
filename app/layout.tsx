@@ -28,7 +28,7 @@ export default async function RootLayout({
       <body className={`${roboto.className} h-screen z-100`} suppressHydrationWarning={true}>
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires as string} />
-          <main className='overflow-y-hidden mt-24 h-auto'>
+          <main className='overflow-y-hidden pt-24 h-screen'>
             {children}
           </main>
         </Hydrate>
