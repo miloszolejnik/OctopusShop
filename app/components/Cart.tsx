@@ -7,6 +7,7 @@ import { useCartStore } from '@/store'
 import {IoAddCircle, IoRemoveCircle} from 'react-icons/io5'
 import {AnimatePresence, motion} from 'framer-motion'
 import CheckOut from './CheckOut';
+import OrderConfirmed from './OrderConfirmd';
 
 export default function Cart(){
     const cartStore = useCartStore();
@@ -39,14 +40,18 @@ export default function Cart(){
             overflow-y-scroll 
             text-gray-700
             '>
-                {/* Checking the state of the checkout */}
+                {/* Rendering success page */}
+                {cartStore.checkOut === 'success' && (
+                                    <OrderConfirmed />
+                                )}
+                {/* Rendering cart page */}
                 {cartStore.onCheckout === 'cart' && (
                     <>
                     {/* Check if there are any items in the cart to render */}
                     {cartStore.cart.length > 0 && (
                         <motion.div layout>
                             <h1>here's your shopping list buddy 😎</h1>
-                            {/*Cart items*/}
+                            {/*Rendering Cart items*/}
                             {cartStore.cart && cartStore.cart.map((item) => (
                                 <motion.div className='flex py-4 gap-4' key={`${Math.floor(Math.random() * 101)}`}>
                                     <Image src={item.img as string} alt={item.name} width={120} height={120} className='rounded-md h-24' />
@@ -68,7 +73,7 @@ export default function Cart(){
                     </>
                     )}
                     {/* Checkout and Total Price */}
-                    {cartStore.onCheckout === 'cart' &&(
+                    {cartStore.onCheckout === 'cart' && cartStore.cart.length > 0 &&(
                         <motion.div layout>
                                 <h1>Total: {formatPrice(totalPrice)}</h1>
                                 {/* Checkout button */}
@@ -80,7 +85,7 @@ export default function Cart(){
                             </motion.div>
                             )}
                                 {/* Empty cart message */}
-                                {cartStore.cart.length <= 0 &&(
+                                {cartStore.cart.length <= 0 && cartStore.onCheckout === 'cart' &&(
                                     <motion.div 
                                     animate={{scale:1, rotateZ:0, opacity:0.75}}
                                     initial={{scale:0.5, rotateZ:-10, opacity:0 }}
@@ -95,14 +100,17 @@ export default function Cart(){
                                     <h1 onClick={() => cartStore.toggleCart()}>Back to store 🏃‍♀️</h1>
                                 </motion.div>
                                 )}
-                                {cartStore.onCheckout === 'checkout' && 
+                                {cartStore.onCheckout === 'checkout' && cartStore.checkOut === '' && (
                                 <>
                                     <CheckOut />
                                     <motion.div className='flex justify-center text-2xl mt-12 cursor-pointer'>
-                                        <h1 onClick={() => cartStore.setOnCheckout("cart")}>Back to cart 🧺</h1>
+                                        <h1 onClick={() => cartStore.setOnCheckout("cart")}
+                                        className='bg-accent py-2 px-4 rounded-md text-white hover:bg-primary ease-in-out duration-200'>
+                                            Back to cart 🧺
+                                            </h1>
                                     </motion.div>
                                 </>
-                                }
+                                )}
                     </motion.div>
                     
             </motion.div>
