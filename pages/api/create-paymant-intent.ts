@@ -39,7 +39,7 @@ export default async function handler(
       create: items.map((item: any) => ({
         name: item.name,
         price: parseFloat(item.price),
-        image: item.image,
+        image: item.img,
         quantity: item.quantity,
       })),
     },
@@ -70,7 +70,7 @@ export default async function handler(
               create: items.map((item) => ({
                 name: item.name,
                 price: parseFloat(item.price),
-                image: item.image,
+                image: item.img,
                 quantity: item.quantity,
               })),
             },

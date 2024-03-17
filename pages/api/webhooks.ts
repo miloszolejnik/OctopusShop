@@ -18,7 +18,6 @@ export const config ={
 export default async function handler(req:NextApiRequest, res:NextApiResponse){
     const buf = await buffer(req)
     const sig = req.headers['stripe-signature']
-    console.log(buf)
 
     if(!sig){
         return res.status(400).send('Missing stripe signature')
