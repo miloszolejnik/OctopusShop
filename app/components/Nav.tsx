@@ -20,6 +20,7 @@ export default function Nav({user}: Session){
         absolute
         w-screen
         z-10
+        lg:px-24
         '>  
             {/* Shop name / Logo */}
             <div className='
