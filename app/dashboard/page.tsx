@@ -40,13 +40,14 @@ export default async function Dashboard(){
                         <h2 className="text-xs font-medium">Order reference: {order.id}</h2>
                         <p className="text-xs">Time: {new Date(order.createdDate).toDateString()}</p>
                         <p className="text-xs mt-2">
-                            Status: 
+                            Status:
                             <span 
-                            className={`${
-                                order.status === 'complete' ?
-                                    "bg-accent" : 
-                                    "bg-red-700"} 
-                                 text-white 
+                            className={`
+                                    ${
+                                        order.status === 'complete' ?
+                                        "bg-success" : 
+                                        "bg-warning"
+                                    }
                                     py-1 
                                     rounded-md 
                                     px-2 

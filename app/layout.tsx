@@ -24,7 +24,7 @@ export default async function RootLayout({
   //Fetch the user
   const session =await getServerSession(authOptions)
   return (
-    <html lang="pl" className='bg-bgBlack text-ghostWhite h-screen'>
+    <html lang="en" data-theme="light" className='h-screen'>
       <body className={`${roboto.className} h-screen z-100`} suppressHydrationWarning={true}>
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires as string} />

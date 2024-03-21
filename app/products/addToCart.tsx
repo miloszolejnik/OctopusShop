@@ -2,29 +2,29 @@
 
 import { useCartStore } from "@/store"
 import { AddToCartType } from "../types/AddToCartType"
+import { useState } from "react"
 
 export default function AddToCart({name, id, img, price, quantity}:AddToCartType){
     const CartStore = useCartStore()
-    
+    const [added, setAdded] = useState(false)
+
+    const handleAddToCart = () =>{
+        CartStore.addProduct({name, id, img, price})
+        setAdded(true)
+        setTimeout(()=>{
+            setAdded(false)
+        },500)
+    }
+
     return(
         <>
             <button 
-            onClick={() => CartStore.addProduct({name, id, img, price}) }
+            onClick={handleAddToCart}
+            disabled={added}
             className="
-            bg-black
-            bg: border-black
-            text-white
-            transition-colors 
-            duration-200 
-            px-3 
-            py-1 
-            border-2 
-            rounded-md 
-            uppercase
-            hover:bg-accent 
-            hover:border-accent
+            my-4 btn btn-primary lg:w-auto w-screen
             ">
-                Add To Cart
+                Add to Cart
             </button>
         </>
     )

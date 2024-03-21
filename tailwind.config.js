@@ -8,16 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'bgBlack' : '#f3f3f3',
-        'bgCard' : '#f8f8ff',
-        "ghostWhite" : '#141414',
-        'primary': '#C61AA7',
-        'accent': 'rgb(15 118 110) ',
+
       },
       gridTemplateColumns:{
         fluid: 'repeat(auto-fit, minmax(15rem,1fr))',
       }
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: [{
+      light: {
+        ...require("daisyui/src/theming/themes")["light"],
+        primary: "#da2e8a",
+        secondary: "#6fe662",
+      },
+    },
+    "dark"]
+  },
 }

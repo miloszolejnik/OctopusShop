@@ -48,7 +48,7 @@ export default function CheckoutForm({clientSecret}: {clientSecret: string}){
 
     return(
         <form
-        className="text-gray-700" 
+        className="" 
         id='payment-form' onSubmit={handleSubmit}>
             <PaymentElement id='payment-element' options={{layout: "tabs"}}/>
             <h1
@@ -60,13 +60,13 @@ export default function CheckoutForm({clientSecret}: {clientSecret: string}){
                 Total: {formattedPrice}
             </h1>
             <button 
-            className={
-                `py-2
+            className={`
+                btn
+                btn-primary
+                py-2
                 mt-4
                 w-full
-                bg-accent
                 rounded-md
-                text-white
                 disabled:opacity-75
                 `
             }

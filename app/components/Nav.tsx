@@ -15,8 +15,6 @@ export default function Nav({user}: Session){
         <nav
         className='
         py-1
-        bg-primary
-        shadow-xl
         absolute
         w-screen
         z-10
@@ -29,7 +27,7 @@ export default function Nav({user}: Session){
             justify-between
             items-center'>
                 <Link href={`../`}>
-                    <h1 className='text-bgBlack font-bold text-2xl'>OctopusShop</h1>
+                    <h1 className='font-bold text-2xl'>OctopusShop</h1>
                 </Link>
                 <ul
                 className='
@@ -55,8 +53,7 @@ export default function Nav({user}: Session){
                                     initial={{scale: 0}}
                                     exit={{scale: 0}}
                                     className='
-                                    bg-teal-700 
-                                    text-white 
+                                    bg-primary
                                     text-sm 
                                     font-bold 
                                     w-5 h-5 
@@ -77,7 +74,7 @@ export default function Nav({user}: Session){
                     {!user &&(
                         <li
                         className='
-                        bg-accent font-semibold text-white py-2 px-4 rounded-md
+                        font-semibold py-2 px-4 rounded-md bg-primary
                         '
                         >
                             <button onClick={()=>signIn()}>signin</button>

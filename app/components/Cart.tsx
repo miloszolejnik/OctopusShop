@@ -30,7 +30,7 @@ export default function Cart(){
             layout
             onClick={(e) => e.stopPropagation()} 
             className='
-            bg-bgCard 
+            bg-white 
             absolute right-0 
             top-0 
             w-screen 
@@ -53,7 +53,7 @@ export default function Cart(){
                             <h1>here's your shopping list buddy 😎</h1>
                             {/*Rendering Cart items*/}
                             {cartStore.cart && cartStore.cart.map((item) => (
-                                <motion.div className='flex py-4 gap-4' key={`${Math.floor(Math.random() * 101)}`}>
+                                <motion.div className='flex mt-4 gap-4' key={`${Math.floor(Math.random() * 101)}`}>
                                     <Image src={item.img as string} alt={item.name} width={120} height={120} className='rounded-md h-24' />
                                     <div>
                                         <h2>{item.name}</h2>
@@ -75,11 +75,11 @@ export default function Cart(){
                     {/* Checkout and Total Price */}
                     {cartStore.onCheckout === 'cart' && cartStore.cart.length > 0 &&(
                         <motion.div layout>
-                                <h1>Total: {formatPrice(totalPrice)}</h1>
+                                <h1 className='mt-4'>Total: {formatPrice(totalPrice)}</h1>
                                 {/* Checkout button */}
                                 <button 
                                 onClick={() => cartStore.setOnCheckout('checkout')}
-                                className='py-2 mt-4 bg-accent  rounded-md text-white w-full'>
+                                className='btn btn-primary w-full mt-4'>
                                     Checkout
                                 </button>
                             </motion.div>
@@ -105,7 +105,7 @@ export default function Cart(){
                                     <CheckOut />
                                     <motion.div className='flex justify-center text-2xl mt-12 cursor-pointer'>
                                         <h1 onClick={() => cartStore.setOnCheckout("cart")}
-                                        className='bg-accent py-2 px-4 rounded-md text-white hover:bg-primary ease-in-out duration-200'>
+                                        className='py-2 px-4 rounded-md ease-in-out duration-200'>
                                             Back to cart 🧺
                                             </h1>
                                     </motion.div>

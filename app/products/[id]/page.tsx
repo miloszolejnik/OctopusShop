@@ -12,7 +12,7 @@ export default async function Product({searchParams}:SearchParamsTypes){
         gap-6 
         flex-col
         lg:flex-row 
-        text-gray-700'>
+        '>
             <Image 
                 src={searchParams.img} 
                 alt={searchParams.name} 
@@ -24,11 +24,11 @@ export default async function Product({searchParams}:SearchParamsTypes){
                 w-96
                 '/>
                 <div 
-                className='justify-between'>
+                className='justify-between lg:text-start'>
                 <h1 className='justify-center font-bold pb-8'>
                     {searchParams.name}
                 </h1>
-                <p className='text-accent pb-8'>
+                <p className='text-primary'>
                     {searchParams.price !== null ? formatPrice(searchParams.price) : 'N/A'}
                 </p>
                 <AddToCart {...searchParams} />
