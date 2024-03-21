@@ -4,6 +4,8 @@ import { animate, motion } from "framer-motion"
 import Link from "next/link"
 import { useCartStore } from "@/store"
 import { useEffect } from "react"
+import { Player } from '@lottiefiles/react-lottie-player'
+import success from '@/success.json'
 
 export default function OrderConfirmed(){
     const cartStore = useCartStore()
@@ -37,6 +39,7 @@ export default function OrderConfirmed(){
                     </button>
                 </Link>
             </div>
+                    <Player src={success} autoplay keepLastFrame/>
         </motion.div>
     )
 }
