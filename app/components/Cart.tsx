@@ -30,7 +30,7 @@ export default function Cart(){
             layout
             onClick={(e) => e.stopPropagation()} 
             className='
-            bg-white 
+            bg-base-100
             absolute right-0 
             top-0 
             w-screen 
@@ -38,7 +38,7 @@ export default function Cart(){
             lg:w-2/5
             p-12 
             overflow-y-scroll 
-            text-gray-700
+            text-base-content
             '>
                 {/* Rendering success page */}
                 {cartStore.checkOut === 'success' && (
@@ -53,7 +53,7 @@ export default function Cart(){
                             <h1>here's your shopping list buddy 😎</h1>
                             {/*Rendering Cart items*/}
                             {cartStore.cart && cartStore.cart.map((item) => (
-                                <motion.div className='flex mt-4 gap-4' key={`${Math.floor(Math.random() * 101)}`}>
+                                <motion.div className='flex mt-4 gap-4 bg-base-300 p-8 rounded-md' key={`${Math.floor(Math.random() * 101)}`}>
                                     <Image src={item.img as string} alt={item.name} width={120} height={120} className='rounded-md h-24' />
                                     <div>
                                         <h2>{item.name}</h2>
@@ -64,7 +64,7 @@ export default function Cart(){
                                                 <h2>{item.quantity}</h2>
                                                 <button onClick={() => cartStore.removeProduct({id: item.id, img: item.img, quantity: item.quantity, name: item.name, price: item.price})}><IoRemoveCircle/></button>
                                         </div>
-                                        <p className='text-sm'>{formatPrice(item.price as number)}</p>
+                                        <p className='text-sm'>Price per item: {formatPrice(item.price as number)}</p>
                                     </div>
                                 </motion.div>
                             ))}
@@ -75,7 +75,7 @@ export default function Cart(){
                     {/* Checkout and Total Price */}
                     {cartStore.onCheckout === 'cart' && cartStore.cart.length > 0 &&(
                         <motion.div layout>
-                                <h1 className='mt-4'>Total: {formatPrice(totalPrice)}</h1>
+                                <h1 className='mt-4 font-bold'>Total: {formatPrice(totalPrice)}</h1>
                                 {/* Checkout button */}
                                 <button 
                                 onClick={() => cartStore.setOnCheckout('checkout')}

@@ -1,5 +1,5 @@
 import Stripe from "stripe"
-import Product from "./components/product";
+import Product from './components/Product';
 
 const getProducts = async () =>{
   const stripe = new Stripe('sk_test_51MyZW2GW0xDNkRsqxUMfK1kf5L2yPI5ofO0fobctvY2TCPmoOszrQ1saJqcrY7rcLMNt1AMe47oCvdbVYRXcpcV100upziRbk1' as string, {

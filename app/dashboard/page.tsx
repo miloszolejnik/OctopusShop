@@ -36,10 +36,33 @@ export default async function Dashboard(){
             <h1 className="text-bold">Your Orders 📝</h1>
             <div className="font-medium">
                 {orders.map((order) => (
-                    <div key={order.id} className="rounde-lg my-12">
-                        <h2 className="text-xs font-medium">Order reference: {order.id}</h2>
-                        <p className="text-xs">Time: {new Date(order.createdDate).toDateString()}</p>
-                        <p className="text-xs mt-2">
+                    <div key={order.id} className="rounde-lg my-12 bg-base-300 p-4 rounded-lg">
+                        <div className="bg-base-100 p-2 rounded-lg">
+                            <h2 className="font-medium">
+                                <span className="font-bold">Order reference:</span> 
+                                {order.id}
+                            </h2>
+                        </div>
+                        <p className="mt-2">Time: {new Date(order.createdDate).toDateString()}</p>
+                        <div className="flex flex-col items-baseline gap-2 py-4">
+                            {order.products.map((product) =>(
+                                <div className="" key={product.id}>
+                                    <h2 className="py-2">{product.name}</h2>
+                                    <div className="flex items-center gap-4">
+                                        <Image 
+                                        src={product.image!} 
+                                        alt={product.name} 
+                                        width={36} 
+                                        height={36}/>
+                                        <div>
+                                            <p>Product price: {formatPrice(product.price)}</p>
+                                            <p>Quantity: {product.quantity}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <p className="">
                             Status:
                             <span 
                             className={`
@@ -52,27 +75,10 @@ export default async function Dashboard(){
                                     rounded-md 
                                     px-2 
                                     mx-2 
-                                    text-xs`}>{order.status}</span>
+                                    text-accent-content
+                                    `}>{order.status}</span>
                         </p>
-                        <div className="text-sm sm:flex lg:flex-row items-baseline gap-2">
-                            {order.products.map((product) =>(
-                                <div className="py-2" key={product.id}>
-                                    <h2 className="py-2">{product.name}</h2>
-                                    <div className="flex items-center gap-4">
-                                        <Image 
-                                        src={product.image!} 
-                                        alt={product.name} 
-                                        width={36} 
-                                        height={36}/>
-                                        <div>
-                                            <p>Product price: {formatPrice(product.price)}</p>
-                                            <p>Quantity {product.quantity}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <p className="font-medium mt-4">Total {formatPrice(order.amount)}</p>
+                        <p className="mt-4">Total {formatPrice(order.amount)}</p>
                     </div>
                 ))}
             </div>

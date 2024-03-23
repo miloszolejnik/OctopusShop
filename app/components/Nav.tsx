@@ -105,7 +105,7 @@ export default function Nav({user}: Session){
                                 className='rounded-full'
                                 tabIndex={0}
                                 />
-                                <ul tabIndex={0} className='dropdown-content menu p-4 space-y-4 shadow bg-base-100 rounded-box w-72'>
+                                <ul tabIndex={0} className='dropdown-content menu p-4 space-y-4 shadow bg-base-100 rounded-box w-40 text-base-content text-center'>
                                     <Link 
                                     className='
                                         hover: 
