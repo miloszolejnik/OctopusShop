@@ -3,7 +3,7 @@ import Nav from './components/Nav'
 import {getServerSession} from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import Hydrate from './components/Hydrate'
-import {Roboto, Lobster_Two} from 'next/font/google'
+import {Roboto} from 'next/font/google'
 
 //Define main font
 const roboto = Roboto({
@@ -24,15 +24,13 @@ export default async function RootLayout({
   //Fetch the user
   const session =await getServerSession(authOptions)
   return (
-    <html lang="en" data-theme="light" className='h-screen'>
-      <body className={`${roboto.className} h-screen z-100`} suppressHydrationWarning={true}>
-        <Hydrate>
-          <Nav user={session?.user} expires={session?.expires as string} />
-          <main className='pt-24 h-screen lg:px-24'>
-            {children}
-          </main>
+    <html lang="en" className={`${roboto.className} h-screen z-100`} suppressHydrationWarning={true}>
+      <Hydrate>
+            <Nav user={session?.user} expires={session?.expires as string} />
+            <main className='pt-24 h-screen lg:px-24'>
+              {children}
+            </main>
         </Hydrate>
-      </body>
     </html>
   )
 }

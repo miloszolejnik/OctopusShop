@@ -23,7 +23,10 @@ module.exports = {
         primary: "#da2e8a",
         secondary: "#6fe662",
       },
-    },
-    "dark"]
+      dark:{
+        ...require("daisyui/src/theming/themes")["dark"],
+        primary: "#da2e8a",
+      }
+    }]
   },
 }

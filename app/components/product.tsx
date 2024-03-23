@@ -16,12 +16,10 @@ export default function Product({name, img, price, id, metadata}:ProductType){
                     width={800} 
                     className='w-full object-contain pb-6'/>
             </Link>
-            <div className='px-6 font-medium'>
+            <div className='font-medium flex flex-col text-center'>
                 <h1 className='text-center truncate font-bold pb-2'>{name}</h1>
-                <div className='flex flex-row justify-between'>
                     <p className=''>{price !== null ? formatPrice(price) : 'N/A'}</p>
                     <AddToCart {...{name, id, img, price}} />
-                </div>
             </div>
         </div>
         )

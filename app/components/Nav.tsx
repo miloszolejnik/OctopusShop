@@ -8,6 +8,13 @@ import Cart from './Cart'
 import { useCartStore } from '@/store'
 import { AiFillShopping } from "react-icons/ai";
 import {AnimatePresence, motion} from 'framer-motion'
+import DarkLight from './DarkLight'
+import {Lobster_Two} from 'next/font/google'
+
+const lobster = Lobster_Two({
+    weight: ['400','700'],
+    subsets: ['latin']
+  })
 
 export default function Nav({user}: Session){
     const cartStore = useCartStore()
@@ -19,6 +26,8 @@ export default function Nav({user}: Session){
         w-screen
         z-10
         lg:px-24
+        bg-primary
+        text-accent-content
         '>  
             {/* Shop name / Logo */}
             <div className='
@@ -26,7 +35,11 @@ export default function Nav({user}: Session){
             flex
             justify-between
             items-center'>
-                <Link href={`../`}>
+                <Link href={`../`} 
+                    className={`
+                    ${lobster.className} 
+                    text-secondary-content
+                    `}>
                     <h1 className='font-bold text-2xl'>OctopusShop</h1>
                 </Link>
                 <ul
@@ -35,6 +48,8 @@ export default function Nav({user}: Session){
                 flex-row
                 items-center
                 '>
+                    {/* Swap between light and dark mode */}
+                    <DarkLight />
                     {/* Toggle the cart */}
                     <li onClick={() =>{ cartStore.toggleCart()}}
                     className='
@@ -53,7 +68,7 @@ export default function Nav({user}: Session){
                                     initial={{scale: 0}}
                                     exit={{scale: 0}}
                                     className='
-                                    bg-primary
+                                    bg-accent
                                     text-sm 
                                     font-bold 
                                     w-5 h-5 
@@ -69,7 +84,6 @@ export default function Nav({user}: Session){
                             )}
                         </AnimatePresence>
                     </li>
-                    {/* User information */}
                     {/* Check if user is loggedin */}
                     {!user &&(
                         <li

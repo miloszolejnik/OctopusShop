@@ -22,7 +22,7 @@ export default function AddToCart({name, id, img, price, quantity}:AddToCartType
             onClick={handleAddToCart}
             disabled={added}
             className="
-            my-4 btn btn-primary lg:w-auto w-screen
+            my-4 btn btn-primary lg:w-auto w-auto
             ">
                 Add to Cart
             </button>
