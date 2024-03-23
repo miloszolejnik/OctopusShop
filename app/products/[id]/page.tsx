@@ -14,6 +14,7 @@ export default async function Product({searchParams}:SearchParamsTypes){
         lg:flex-row 
         '>
             <Image 
+                priority={true}
                 src={searchParams.img} 
                 alt={searchParams.name} 
                 height={800} 

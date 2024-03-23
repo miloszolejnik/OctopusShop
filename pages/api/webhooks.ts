@@ -1,13 +1,12 @@
 import Stripe from "stripe";
-import { PrismaClient } from "@prisma/client";
 import {buffer} from 'micro'
 import { NextApiRequest, NextApiResponse } from "next"
+import { prisma } from "@/app/util/prisma";
 
 const secretKey = process.env.STRIPE_SECRET_KEY
 const stripe = new Stripe(secretKey as string, {
   apiVersion: "2022-11-15",
 })
-const prisma = new PrismaClient()
 
 export const config ={
     api:{

@@ -10,6 +10,7 @@ export default function Product({name, img, price, id, metadata}:ProductType){
         <div className='flex flex-col pb-6 rounded-md drop-shadow-lg'>
             <Link href={{pathname: `/products/${id}`, query: {name, img, price, id, features}}}>
                 <Image 
+                    priority={true}
                     src={img} 
                     alt={name} 
                     height={800} 

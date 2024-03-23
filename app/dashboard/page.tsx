@@ -50,10 +50,13 @@ export default async function Dashboard(){
                                     <h2 className="py-2">{product.name}</h2>
                                     <div className="flex items-center gap-4">
                                         <Image 
+                                        priority={true}
                                         src={product.image!} 
                                         alt={product.name} 
-                                        width={36} 
-                                        height={36}/>
+                                        height={70}
+                                        width={70}
+                                        className="w-auto"
+                                        />
                                         <div>
                                             <p>Product price: {formatPrice(product.price)}</p>
                                             <p>Quantity: {product.quantity}</p>
