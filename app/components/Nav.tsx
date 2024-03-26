@@ -31,7 +31,8 @@ export default function Nav({user}: Session){
         '>  
             {/* Shop name / Logo */}
             <div className='
-            mx-4 
+            lg:mx-4 
+            mx-0
             flex
             justify-between
             items-center'>
